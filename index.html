@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holi Color Bash: Intricate Virtual Gulal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Holi Color Bash</h1>
+    <p>Splash intricate, patterned virtual gulal on your friends!</p>
+</header>
+
+<main>
+    <div id="loading-overlay" class="loading-overlay active">
+        <div class="spinner"></div>
+        <p>Initializing Gulal Magic...</p>
+    </div>
+
+    <div id="app-container" class="app-container hidden">
+
+        <section id="user1-select" class="section active">
+            <h2>Select Your Patterns</h2>
+            <p>Pick a few traditional, vibrant colors. When applied, they will form solid fields and patterns on your friend's face!</p>
+            <div id="color-palette" class="color-palette">
+                <button class="color-swatch" data-color="#FF1F84" title="Gulal Magenta" aria-label="Gulal Magenta"></button>
+                <button class="color-swatch" data-color="#FFD700" title="Haldi Yellow" aria-label="Haldi Yellow"></button>
+                <button class="color-swatch" data-color="#00C897" title="Neem Green" aria-label="Neem Green"></button>
+                <button class="color-swatch" data-color="#2D8CFF" title="Shiva Blue" aria-label="Shiva Blue"></button>
+                <button class="color-swatch" data-color="#A259FF" title="Holi Purple" aria-label="Holi Purple"></button>
+                <button class="color-swatch" data-color="#FF7F50" title="Saffron Orange" aria-label="Saffron Orange"></button>
+            </div>
+            <p id="selected-colors-text"></p>
+            <button id="generate-link-btn" class="btn primary-btn" disabled>Generate Share Link</button>
+        </section>
+
+        <section id="user1-share" class="section">
+            <h2>Your Custom Holi Link!</h2>
+            <p>Copy and share this link. When your friend uses it, they can add your solid, patterned colors to their photo.</p>
+            <div class="share-link-group">
+                <input type="text" id="share-link-input" readonly aria-label="Copyable share link">
+                <button id="copy-link-btn" class="btn secondary-btn">Copy Link</button>
+            </div>
+            <p id="copy-status" class="status-msg"></p>
+            <button id="back-to-select-btn" class="btn text-btn">Select Other Colors</button>
+        </section>
+
+        <section id="user2-bash" class="section">
+            <h2>Receive Your Colors!</h2>
+            <p>Your friend picked special colors and patterns for you. Take a selfie or upload a photo to get color-splashed, solid fields and complex patterns, exactly like the reference!</p>
+            
+            <div id="upload-stage" class="upload-stage active">
+                <div class="upload-options" id="upload-options" style="display: flex; gap: 10px; justify-content: center; align-items: center;">
+                    <input type="file" id="image-upload" accept="image/png, image/jpeg" style="display:none;">
+                    <label for="image-upload" class="btn secondary-btn upload-btn">Choose Photo</label>
+                    <span style="color: #777; font-weight: bold;">OR</span>
+                    <button id="start-camera-btn" class="btn primary-btn">Use Webcam</button>
+                </div>
+
+                <div id="webcam-container" class="hidden">
+                    <video id="webcam-video" autoplay playsinline style="max-width: 100%; border-radius: 8px; transform: scaleX(-1);"></video>
+                    <div style="margin-top: 10px; display: flex; gap: 10px; justify-content: center;">
+                        <button id="capture-btn" class="btn primary-btn">Snap Photo!</button>
+                        <button id="close-camera-btn" class="btn text-btn">Cancel</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="result-stage" class="result-stage">
+                <p>Applying virtual solid gulal and patterns...</p>
+                <div class="canvas-wrapper">
+                    <canvas id="canvas-overlay"></canvas>
+                </div>
+                <div class="final-controls">
+                    <button id="download-btn" class="btn primary-btn" disabled>Download Holi Photo</button>
+                    <button id="restart-btn" class="btn text-btn">New Photo</button>
+                    <button id="create-own-btn" class="btn secondary-btn" style="margin-top: 10px;">Create Your Own Link!</button>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2026 Holi Color Bash. A colorful creation with intricate patterns.</p>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>

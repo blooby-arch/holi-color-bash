@@ -1,0 +1,214 @@
+/* style.css */
+:root {
+  --primary-color: #FF1F84; /* Gulal Magenta */
+  --secondary-color: #2D8CFF; /* Shiva Blue */
+  --bg-color: #FFF9F3; 
+  --text-color: #333;
+  --accent-color: #FFD700; /* Haldi Yellow */
+  --overlay-bg: rgba(0, 0, 0, 0.7);
+  --swatch-size: 55px;
+  --border-radius: 12px;
+  --font-family: 'Poppins', sans-serif;
+  --base-font-size: 16px;
+}
+
+/* 1. Animated, Shifting Colorful Background */
+body {
+  font-family: var(--font-family);
+  font-size: var(--base-font-size);
+  color: var(--text-color);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  
+  /* The Magic Holi Gradient */
+  background: linear-gradient(-45deg, #FFE5F1, #FFF9D2, #E5F9F4, #E5F0FF, #F2E5FF);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  position: relative;
+  overflow-x: hidden;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* 2. Floating Powder Clouds in the Background */
+body::before, body::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  z-index: -1;
+  filter: blur(80px);
+  opacity: 0.5;
+}
+body::before {
+  width: 400px; height: 400px;
+  background: var(--primary-color);
+  top: -100px; left: -150px;
+}
+body::after {
+  width: 500px; height: 500px;
+  background: var(--secondary-color);
+  bottom: -150px; right: -150px;
+}
+
+/* 3. Festive Header with Gradient Text */
+header { 
+  text-align: center; 
+  padding: 2.5rem 1rem; 
+  background: rgba(255, 255, 255, 0.6); 
+  backdrop-filter: blur(10px);
+  border-bottom: 4px dashed var(--accent-color); 
+}
+header h1 { 
+  font-weight: 700; 
+  margin: 0 0 0.5rem; 
+  font-size: 3rem; 
+  /* Gradient painted text */
+  background: linear-gradient(45deg, #FF1F84, #FFD700, #00C897, #2D8CFF, #A259FF);
+background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+header p { margin: 0; color: #555; font-size: 1.2rem; font-weight: 600; }
+
+/* 4. Glowing App Container */
+main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 2rem; }
+.app-container {
+  width: 100%; max-width: 600px;
+  background: rgba(255, 255, 255, 0.95); 
+  padding: 2.5rem; 
+  border-radius: 20px;
+  border: 2px solid white;
+  box-shadow: 0 15px 35px rgba(255, 31, 132, 0.15), 0 5px 15px rgba(45, 140, 255, 0.15);
+  text-align: center;
+  display: flex; flex-direction: column; gap: 1.5rem;
+  transition: opacity 0.5s ease;
+  backdrop-filter: blur(5px);
+}
+.app-container.hidden { opacity: 0; }
+
+.section { display: none; }
+.section.active { display: flex; flex-direction: column; gap: 1rem; align-items: center; }
+.section h2 { color: var(--primary-color); font-size: 1.8rem; margin-bottom: 0.5rem;}
+
+/* Buttons with vibrant gradients and hover pop */
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: none;
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.primary-btn {
+  background: linear-gradient(45deg, #FF1F84, #FF7F50);
+  color: white;
+  box-shadow: 0 4px 15px rgba(255, 31, 132, 0.4);
+}
+.primary-btn:hover:not(:disabled) { 
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(255, 31, 132, 0.6);
+}
+.primary-btn:disabled { background: #ccc; box-shadow: none; cursor: not-allowed; transform: none; }
+
+.secondary-btn {
+  background: transparent;
+  color: var(--secondary-color);
+  border: 3px solid var(--secondary-color);
+}
+.secondary-btn:hover { 
+  background: var(--secondary-color); 
+  color: white; 
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(45, 140, 255, 0.4);
+}
+
+.text-btn { background: none; color: #888; font-size: 0.95rem; margin-top: 1rem; text-transform: none;}
+.text-btn:hover { color: var(--primary-color); text-decoration: underline; }
+
+/* Color Swatches - bigger and bouncier */
+.color-palette { display: grid; grid-template-columns: repeat(auto-fit, minmax(var(--swatch-size), 1fr)); gap: 15px; width: 100%; max-width: 380px; margin: 10px auto; }
+.color-swatch {
+  width: var(--swatch-size); height: var(--swatch-size);
+  border-radius: 50%; border: 4px solid #fff; cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease;
+  padding: 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.color-swatch:hover { transform: scale(1.15); }
+.color-swatch.selected { 
+  border-color: var(--text-color); 
+  transform: scale(1.25); 
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2); 
+}
+
+/* Specificity for color swatches based on data-color */
+[data-color="#FF1F84"] { background-color: #FF1F84; } 
+[data-color="#FFD700"] { background-color: #FFD700; } 
+[data-color="#00C897"] { background-color: #00C897; }
+[data-color="#2D8CFF"] { background-color: #2D8CFF; }
+[data-color="#A259FF"] { background-color: #A259FF; }
+[data-color="#FF7F50"] { background-color: #FF7F50; }
+
+/* Share Link Group */
+.share-link-group { display: flex; gap: 10px; width: 100%; }
+#share-link-input {
+  flex: 1; padding: 12px; border-radius: 30px;
+  border: 2px solid #ddd; font-family: monospace; font-size: 1rem;
+  background: #f9f9f9; text-align: center;
+}
+#share-link-input:focus { outline: none; border-color: var(--primary-color); }
+
+/* Canvas and Loading */
+.canvas-wrapper {
+  position: relative; width: 100%; display: flex; justify-content: center;
+  overflow: hidden; border-radius: var(--border-radius); border: 3px dashed var(--accent-color);
+  background: #fdfdfd; padding: 10px; box-sizing: border-box;
+}
+#canvas-overlay { max-width: 100%; max-height: 70vh; object-fit: contain; border-radius: 8px;}
+
+.upload-stage, .result-stage { display: none; width: 100%; }
+.upload-stage.active, .result-stage.active { display: block; }
+
+/* Multi-colored Spinner */
+.loading-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(5px);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+}
+.loading-overlay.active { opacity: 1; pointer-events: all; }
+.spinner {
+  border: 6px solid #f3f3f3; 
+  border-top: 6px solid var(--primary-color);
+  border-right: 6px solid var(--accent-color);
+  border-bottom: 6px solid var(--secondary-color);
+  border-left: 6px solid #00C897;
+  border-radius: 50%; width: 60px; height: 60px;
+  animation: spin 1s linear infinite; margin-bottom: 20px;
+}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+footer { text-align: center; padding: 1.5rem 1rem; background: transparent; color: #666; font-weight: 600;}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+  :root { --swatch-size: 45px; }
+  header h1 { font-size: 2.2rem; }
+  .app-container { padding: 1.5rem; border-radius: 15px;}
+  .color-palette { grid-template-columns: repeat(3, 1fr); gap: 15px; }
+  .share-link-group { flex-direction: column; }
+  .upload-options { flex-direction: column; }
+}
